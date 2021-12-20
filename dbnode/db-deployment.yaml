@@ -1,0 +1,27 @@
+apiVersion: apps/v1 #  for k8s versions before 1.9.0 use apps/v1beta2  and before 1.8.0 use extensions/v1beta1
+kind: Deployment
+metadata:
+  name: matchmaker-db
+spec:
+  selector:
+      matchLabels:
+        app: matchmaker-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: matchmaker-db
+    spec:
+      containers:
+      - name: matchmaker-db
+        image: hemanthcu/matchmaker-db:latest
+        env:
+        - name: RABBITMQ_HOST
+          value: rabbitmq.default
+        - name: REDIS_HOST
+          value: redis.default
+        resources:
+          requests:
+            cpu: 100m
+            memory: 500Mi
+---

@@ -1,0 +1,10 @@
+FROM dirkcgrunwald/flair
+
+WORKDIR /server
+
+COPY requirements.txt /server/
+COPY game-runner.py /server/
+
+RUN pip install -r requirements.txt
+
+ENTRYPOINT ["python", "game-runner.py"]

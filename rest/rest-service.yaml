@@ -1,0 +1,12 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: matchmaker-rest
+spec:
+  type: NodePort
+  selector:
+    app: matchmaker-rest
+  ports:
+    - protocol: "TCP"
+      port: 5000
+      targetPort: 5000

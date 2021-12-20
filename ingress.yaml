@@ -1,0 +1,22 @@
+#
+# See https://kubernetes.io/docs/concepts/services-networking/ingress/
+#
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: matchmaker-ingress
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: matchmaker-rest
+            port:
+              number: 5000
+---
